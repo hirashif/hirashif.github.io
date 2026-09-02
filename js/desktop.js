@@ -28,16 +28,20 @@
       if (mq.matches) {
         win.style.left = '';
         win.style.top = '';
-      } else if (win.dataset.x) {
+      } else if (win.dataset.x || win.dataset.right) {
         var maxLeft = Math.max(8, desktop.clientWidth - win.offsetWidth - 16);
         var maxTop = Math.max(8, desktop.clientHeight - 120);
-        win.style.left = Math.min(parseInt(win.dataset.x, 10), maxLeft) + 'px';
+        var left = win.dataset.right !== undefined
+          ? desktop.clientWidth - win.offsetWidth - parseInt(win.dataset.right, 10)
+          : parseInt(win.dataset.x, 10);
+        win.style.left = Math.min(Math.max(8, left), maxLeft) + 'px';
         win.style.top = Math.min(parseInt(win.dataset.y, 10), maxTop) + 'px';
         if (!win.style.zIndex) win.style.zIndex = ++zTop;
       }
     });
   }
   place();
+  window.addEventListener('resize', place);
   if (mq.addEventListener) mq.addEventListener('change', place);
   else if (mq.addListener) mq.addListener(place);
 
@@ -135,12 +139,33 @@
     });
   });
 
+  // zoom enlarges the window in place (clamped to the desktop) and stays draggable;
+  // clicking again restores the geometry it had before.
   document.querySelectorAll('[data-zoom]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       if (mq.matches) return;
       var win = btn.closest('.window');
-      win.classList.toggle('zoomed');
       focusWindow(win);
+      if (win.classList.contains('zoomed')) {
+        win.style.width = win.dataset.prevWidth;
+        win.style.left = win.dataset.prevLeft;
+        win.style.top = win.dataset.prevTop;
+        win.classList.remove('zoomed');
+        return;
+      }
+      win.dataset.prevWidth = win.style.width;
+      win.dataset.prevLeft = win.style.left;
+      win.dataset.prevTop = win.style.top;
+      // cascade: each additional zoomed window steps 28px down and right so they never stack exactly
+      var n = document.querySelectorAll('.window.zoomed').length;
+      var step = 28 * n;
+      var w = Math.min(920, desktop.clientWidth - 64) - step;
+      var left = Math.max(8 + step, Math.min(win.offsetLeft, desktop.clientWidth - w - 16));
+      var top = Math.max(8 + step, Math.min(win.offsetTop, 24 + step));
+      win.classList.add('zoomed');
+      win.style.width = w + 'px';
+      win.style.left = left + 'px';
+      win.style.top = top + 'px';
     });
   });
 
