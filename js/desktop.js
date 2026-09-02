@@ -147,19 +147,26 @@
       var win = btn.closest('.window');
       focusWindow(win);
       if (win.classList.contains('zoomed')) {
+        // restore without animating: the saved width may be a calc() the transition can't interpolate
+        win.classList.add('dragging');
         win.style.width = win.dataset.prevWidth;
         win.style.left = win.dataset.prevLeft;
         win.style.top = win.dataset.prevTop;
         win.classList.remove('zoomed');
+        void win.offsetWidth;
+        win.classList.remove('dragging');
         return;
       }
       win.dataset.prevWidth = win.style.width;
       win.dataset.prevLeft = win.style.left;
       win.dataset.prevTop = win.style.top;
+      // snapshot the current size in px so the width transition has a real start value
+      win.style.width = win.offsetWidth + 'px';
+      void win.offsetWidth;
       // cascade: each additional zoomed window steps 28px down and right so they never stack exactly
       var n = document.querySelectorAll('.window.zoomed').length;
       var step = 28 * n;
-      var w = Math.min(920, desktop.clientWidth - 64) - step;
+      var w = Math.min(1200, desktop.clientWidth - 64) - step;
       var left = Math.max(8 + step, Math.min(win.offsetLeft, desktop.clientWidth - w - 16));
       var top = Math.max(8 + step, Math.min(win.offsetTop, 24 + step));
       win.classList.add('zoomed');
