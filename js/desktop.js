@@ -171,4 +171,39 @@
       }, 450 + i * 260);
     });
   }
+
+  // ---------- github contributions graph ----------
+  var gh = document.getElementById('gh-graph');
+  if (gh && window.fetch) {
+    fetch('https://github-contributions-api.jogruber.de/v4/hirashif?y=last')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (data) {
+        var days = data.contributions || [];
+        if (!days.length) throw new Error('empty');
+        // align to weeks: pad so the first column starts on a Sunday
+        var first = new Date(days[0].date + 'T00:00:00');
+        var pad = first.getDay();
+        var grid = document.createElement('div');
+        grid.className = 'gh-grid';
+        for (var i = 0; i < pad; i++) {
+          var e = document.createElement('span'); e.className = 'gh-cell'; e.style.visibility = 'hidden'; grid.appendChild(e);
+        }
+        days.forEach(function (d) {
+          var c = document.createElement('span');
+          c.className = 'gh-cell' + (d.level ? ' l' + d.level : '');
+          c.title = d.count + (d.count === 1 ? ' contribution on ' : ' contributions on ') + d.date;
+          grid.appendChild(c);
+        });
+        var total = (data.total && data.total.lastYear) || days.reduce(function (a, d) { return a + d.count; }, 0);
+        var meta = document.createElement('div');
+        meta.className = 'gh-meta';
+        meta.innerHTML = total.toLocaleString() + ' contributions / last year · <a href="https://github.com/hirashif">github.com/hirashif</a>';
+        gh.innerHTML = '';
+        gh.appendChild(grid);
+        gh.appendChild(meta);
+      })
+      .catch(function () {
+        gh.innerHTML = '<a href="https://github.com/hirashif">github.com/hirashif</a>';
+      });
+  }
 })();

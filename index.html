@@ -22,6 +22,7 @@
     <button class="menubar-item" data-open="win-terminal">terminal</button>
     <button class="menubar-item" data-open="win-projects">projects</button>
     <button class="menubar-item" data-open="win-writeups">writeups</button>
+    <a class="menubar-item" href="resume.pdf">resume</a>
     <a class="menubar-item" href="mailto:shifan.hirani@gmail.com">contact</a>
   </div>
   <span class="menubar-clock" id="clock" aria-hidden="true"></span>
@@ -41,11 +42,17 @@
       <div class="t-line t-out"><span class="t-key">languages</span>go · java · python · c++ · typescript · sql · php</div>
       <div class="t-line t-out"><span class="t-key">backend</span>spring boot · kafka · redis · postgres · rest apis</div>
       <div class="t-line t-out"><span class="t-key">infra</span>kubernetes · docker · terraform · azure · gcp · ci/cd</div>
-      <div class="t-line t-out"><span class="t-key">ai tooling</span>claude code · cursor · codex · opencode</div>
+      <div class="t-line t-out"><span class="t-key">ai tooling</span><span class="tools">
+        <span class="tool"><img src="https://cdn.simpleicons.org/claude/C9D4DF" alt="" width="14" height="14">claude code</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/cursor/C9D4DF" alt="" width="14" height="14">cursor</span>
+        <span class="tool">codex</span>
+        <span class="tool">opencode</span></span></div>
+      <div class="t-line"><span class="t-prompt">$</span> gh contributions --last-year</div>
+      <div class="t-line t-out t-gh" id="gh-graph" aria-label="GitHub contributions, last year"><span class="gh-loading">loading github.com/hirashif…</span></div>
       <div class="t-line"><span class="t-prompt">$</span> ls ~/projects</div>
       <div class="t-line t-out t-dirs">ledger/&ensp;crypto-market-pipeline/&ensp;thecrossdesk/&ensp;gridloom/&ensp;qs509/</div>
       <div class="t-line"><span class="t-prompt">$</span> cat status.txt</div>
-      <div class="t-line t-out">Open to backend roles. Remote, Dallas, or NY.<br><a href="mailto:shifan.hirani@gmail.com">shifan.hirani@gmail.com</a> · <a href="https://github.com/hirashif">github.com/hirashif</a></div>
+      <div class="t-line t-out">Open to backend roles. Remote, Dallas, or NY.<br><a href="mailto:shifan.hirani@gmail.com">shifan.hirani@gmail.com</a> · <a href="https://github.com/hirashif">github.com/hirashif</a> · <a href="resume.pdf">resume.pdf</a></div>
       <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor" aria-hidden="true"></span></div>
     </div>
   </section>
@@ -95,7 +102,7 @@
     </div>
   </section>
 
-  <section class="window sticky" id="win-writeups" data-x="104" data-y="536" style="width: 300px;" aria-label="Writeups">
+  <section class="window sticky" id="win-writeups" data-x="104" data-y="664" style="width: 300px;" aria-label="Writeups">
     <div class="titlebar sticky-bar">
       <span class="lights"><button class="light red" data-close aria-label="Close window"></button></span>
       <span class="titlebar-title">writeups</span>
@@ -122,6 +129,9 @@
   </a>
   <a class="dock-item" href="mailto:shifan.hirani@gmail.com" data-label="Email me" aria-label="Email">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+  </a>
+  <a class="dock-item" href="resume.pdf" data-label="Resume (PDF)" aria-label="Resume PDF">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6.5 2.5h7l5 5v14h-12z"/><path d="M13.5 2.5v5h5"/><path d="M8.5 12h7M8.5 15.5h7M8.5 19h4"/></svg>
   </a>
   <span class="dock-sep" aria-hidden="true"></span>
   <button class="dock-item" data-open="win-terminal" data-label="Terminal" aria-label="Open terminal window">
