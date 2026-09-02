@@ -30,6 +30,22 @@
 
 <main class="desktop" id="desktop">
 
+  <section class="window sticky" id="win-writeups" data-x="104" data-y="600" style="width: 300px;" aria-label="Writeups">
+    <div class="titlebar sticky-bar">
+      <span class="lights"><button class="light red" data-close aria-label="Close window"></button></span>
+      <span class="titlebar-title">writeups</span>
+    </div>
+    <div class="window-body sticky-body">
+      <a href="writeups/ledger-bug.html">Finding the bug that let a $70 account send $500</a>
+      <a href="writeups/ordering.html">Ordering without global order</a>
+      <a href="writeups/cross-desk.html">Why the Cross Desk has nothing real-time in it</a>
+      <a href="writeups/agentic-payments.html">Agentic payments</a>
+      <a href="writeups/ap2-x402.html">AP2 and x402</a>
+      <a href="writeups/concurrency.html">Concurrency in practice</a>
+      <a href="writeups/inference.html">What inference actually costs</a>
+    </div>
+  </section>
+
   <section class="window" id="win-terminal" data-x="48" data-y="64" style="width: 600px;" aria-label="Terminal">
     <div class="titlebar">
       <span class="lights"><button class="light red" data-close aria-label="Close window"></button><button class="light yellow" data-min aria-label="Minimize window"></button><button class="light green" data-zoom aria-label="Zoom window"></button></span>
@@ -39,14 +55,32 @@
       <div class="t-line"><span class="t-prompt">$</span> whoami</div>
       <div class="t-line t-out">Shifan Hirani. Backend engineer in Dallas. Spent two years at Paycom building internal CRM and tax software for a ~7,000-person company. Now building my own products.</div>
       <div class="t-line"><span class="t-prompt">$</span> cat skills.txt</div>
-      <div class="t-line t-out"><span class="t-key">languages</span>go · java · python · c++ · typescript · sql · php</div>
-      <div class="t-line t-out"><span class="t-key">backend</span>spring boot · kafka · redis · postgres · rest apis</div>
-      <div class="t-line t-out"><span class="t-key">infra</span>kubernetes · docker · terraform · azure · gcp · ci/cd</div>
+      <div class="t-line t-out"><span class="t-key">languages</span><span class="tools">
+        <span class="tool"><img src="https://cdn.simpleicons.org/go/C9D4DF" alt="" width="14" height="14">go</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/openjdk/C9D4DF" alt="" width="14" height="14">java</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/python/C9D4DF" alt="" width="14" height="14">python</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/cplusplus/C9D4DF" alt="" width="14" height="14">c++</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/typescript/C9D4DF" alt="" width="14" height="14">typescript</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/postgresql/C9D4DF" alt="" width="14" height="14">sql</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/php/C9D4DF" alt="" width="14" height="14">php</span></span></div>
+      <div class="t-line t-out"><span class="t-key">backend</span><span class="tools">
+        <span class="tool"><img src="https://cdn.simpleicons.org/springboot/C9D4DF" alt="" width="14" height="14">spring boot</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/apachekafka/C9D4DF" alt="" width="14" height="14">kafka</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/redis/C9D4DF" alt="" width="14" height="14">redis</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/postgresql/C9D4DF" alt="" width="14" height="14">postgres</span>
+        <span class="tool">rest apis</span></span></div>
+      <div class="t-line t-out"><span class="t-key">infra</span><span class="tools">
+        <span class="tool"><img src="https://cdn.simpleicons.org/kubernetes/C9D4DF" alt="" width="14" height="14">kubernetes</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/docker/C9D4DF" alt="" width="14" height="14">docker</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/terraform/C9D4DF" alt="" width="14" height="14">terraform</span>
+        <span class="tool tool-avatar"><img src="https://github.com/Azure.png?size=64" alt="" width="14" height="14">azure</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/googlecloud/C9D4DF" alt="" width="14" height="14">gcp</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/githubactions/C9D4DF" alt="" width="14" height="14">ci/cd</span></span></div>
       <div class="t-line t-out"><span class="t-key">ai tooling</span><span class="tools">
         <span class="tool"><img src="https://cdn.simpleicons.org/claude/C9D4DF" alt="" width="14" height="14">claude code</span>
         <span class="tool"><img src="https://cdn.simpleicons.org/cursor/C9D4DF" alt="" width="14" height="14">cursor</span>
-        <span class="tool">codex</span>
-        <span class="tool">opencode</span></span></div>
+        <span class="tool tool-avatar"><img src="https://github.com/openai.png?size=64" alt="" width="14" height="14">codex</span>
+        <span class="tool tool-avatar"><img src="https://github.com/opencode-ai.png?size=64" alt="" width="14" height="14">opencode</span></span></div>
       <div class="t-line"><span class="t-prompt">$</span> gh contributions --last-year</div>
       <div class="t-line t-out t-gh" id="gh-graph" aria-label="GitHub contributions, last year"><span class="gh-loading">loading github.com/hirashif…</span></div>
       <div class="t-line"><span class="t-prompt">$</span> ls ~/projects</div>
@@ -99,22 +133,6 @@
       <div class="t-line t-json">{"transactionId": 2, "status": "COMPLETED"}</div>
       <div class="t-line t-ok">replayed, not repeated. money moved once.</div>
       <div class="t-line"><a href="https://ledger-75986543116.us-central1.run.app/swagger-ui/index.html">run it yourself in the live API docs</a> <span class="t-comment">(cold start ~3s)</span></div>
-    </div>
-  </section>
-
-  <section class="window sticky" id="win-writeups" data-x="104" data-y="664" style="width: 300px;" aria-label="Writeups">
-    <div class="titlebar sticky-bar">
-      <span class="lights"><button class="light red" data-close aria-label="Close window"></button></span>
-      <span class="titlebar-title">writeups</span>
-    </div>
-    <div class="window-body sticky-body">
-      <a href="writeups/ledger-bug.html">Finding the bug that let a $70 account send $500</a>
-      <a href="writeups/ordering.html">Ordering without global order</a>
-      <a href="writeups/cross-desk.html">Why the Cross Desk has nothing real-time in it</a>
-      <a href="writeups/agentic-payments.html">Agentic payments</a>
-      <a href="writeups/ap2-x402.html">AP2 and x402</a>
-      <a href="writeups/concurrency.html">Concurrency in practice</a>
-      <a href="writeups/inference.html">What inference actually costs</a>
     </div>
   </section>
 
